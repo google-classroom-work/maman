@@ -1,1 +1,109 @@
-<!doctype html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=UA-177630792-1"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-177630792-1")</script><title>Voxiom.io - Build, Craft, Shoot</title><meta name="description" content="Play the best browser multiplayer voxel first person shooter inspired by minecraft, fortnite, counter-strike, and call of duty!"><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel="apple-touch-icon" sizes="180x180" href="/./package/bda3e44e5e8a5d549cde.png"><link rel="icon" type="image/png" sizes="32x32" href="/./package/0048a147801f815194c5.png"><link rel="icon" type="image/png" sizes="16x16" href="/./package/e4e23efcaf6fc493623e.png"><link rel="manifest" href="/bd9c9a55ba983dc3f8b3.webmanifest"><link rel="mask-icon" href="/./package/6adbd0ca644abcb7b1f3.svg" color="#5bbad5"><link rel="shortcut icon" href="/91e77ab05bcf089f1a1b.ico"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/e55a2b2c86c048b2e041.xml"><meta name="theme-color" content="#ffffff"><script>var aiptag=aiptag||{};aiptag.cmd=aiptag.cmd||[],aiptag.cmd.display=aiptag.cmd.display||[],aiptag.cmd.player=aiptag.cmd.player||[]</script><script>var _paq=window._paq=window._paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){var a="//matomo.voxiom.io/";_paq.push(["setTrackerUrl",a+"matomo.php"]),_paq.push(["setSiteId","1"]);var e=document,t=e.createElement("script"),p=e.getElementsByTagName("script")[0];t.async=!0,t.src=a+"matomo.js",p.parentNode.insertBefore(t,p)}()</script><script defer="defer" src="/./package/e342e5fea1762d657e50.js"></script><script defer="defer" src="/./package/b68827ec3820f4e2ee6a.js"></script><link href="/./package/062b13fab2efcc34c690.css" rel="stylesheet"></head><body oncontextmenu="return!1"><div id="preroll"></div><div id="app"></div><canvas id="canvas"></canvas></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Agent Walker vs Skibidi Toilets</title>
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+
+<body>
+  <div id="unity-container">
+    <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-logo"></div>
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+    <div id="unity-warning"> </div>
+  </div>
+  <script>
+    window.addEventListener("load", function () {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("ServiceWorker.js");
+      }
+    });
+
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var warningBanner = document.querySelector("#unity-warning");
+
+    // Shows a temporary message banner/ribbon for a few seconds, or
+    // a permanent error message on top of the canvas if type=='error'.
+    // If type=='warning', a yellow highlight color is used.
+    // Modify or remove this function to customize the visually presented
+    // way that non-critical warnings and error messages are presented to the
+    // user.
+    function unityShowBanner(msg, type) {
+      function updateBannerVisibility() {
+        warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+      }
+      var div = document.createElement('div');
+      div.innerHTML = msg;
+      warningBanner.appendChild(div);
+      if (type == 'error') div.style = 'background: red; padding: 10px;';
+      else {
+        if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+        setTimeout(function () {
+          warningBanner.removeChild(div);
+          updateBannerVisibility();
+        }, 5000);
+      }
+      updateBannerVisibility();
+    }
+
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/AgentWalkerVsSkibidiToilets_GD.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/AgentWalkerVsSkibidiToilets_GD.data.unityweb",
+      frameworkUrl: buildUrl + "/AgentWalkerVsSkibidiToilets_GD.framework.js.unityweb",
+      codeUrl: buildUrl + "/AgentWalkerVsSkibidiToilets_GD.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "GoGoMan",
+      productName: "Agent Walker vs Skibidi Toilets",
+      productVersion: "1.0.1",
+      showBanner: unityShowBanner,
+    };
+
+    // By default Unity keeps WebGL canvas render target size matched with
+    // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+    // Set this to false if you want to decouple this synchronization from
+    // happening inside the engine, and you would instead like to size up
+    // the canvas DOM size and WebGL render target sizes yourself.
+    // config.matchWebGLToCanvasSize = false;
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      // Mobile device style: fill the whole browser client area with the game canvas:
+      var meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.getElementsByTagName('head')[0].appendChild(meta);
+      config.devicePixelRatio = 1;
+      window.devicePixelRatio = 1;
+    }
+
+    canvas.style.background = "url('" + buildUrl + "/AgentWalkerVsSkibidiToilets_GD.jpg.unityweb') center / cover";
+    loadingBar.style.display = "block";
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        progressBarFull.style.width = 100 * progress + "%";
+      }).then((unityInstance) => {
+        loadingBar.style.display = "none";
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+
+</html>
